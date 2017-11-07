@@ -1,6 +1,6 @@
 
 # Image Search Abstraction Layer
-A full stack JavaScript app that allows you to search for images
+A full stack JavaScript app that allows you to search for images.  [Try it out](https://imagus.glitch.me)
 
 **Objective:** Build a full stack JavaScript app that is functionally similar to [this](https://cryptic-ridge-9197.herokuapp.com/api/imagesearch/lolcats%20funny?offset=10).
 
