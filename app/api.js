@@ -19,14 +19,21 @@ module.exports = (app, db, externalAPI) => {
   })
 
   app.get('/latest', (req, res, next) => {
-    console.log(req.headers)
-    db.find({}, {_id: 0}).sort({ 'when': -1 }).toArray((err, docs) => {
-      docs = docs.map(doc => {
-        doc.when = new Date(doc.when).toISOString()
-        return doc
+    const queryFilter = {
+      limit: 20,
+      ascending: 1,
+      descending: -1,
+    }
+    db.find({}, {_id: 0})
+      .sort({ 'when': queryFilter.descending })
+      .limit(queryFilter.limit)
+      .toArray((err, docs) => {
+        docs = docs.map(doc => {
+          doc.when = new Date(doc.when).toISOString()
+          return doc
+        })
+        res.type('json').send(JSON.stringify(docs))
       })
-      res.type('json').send(JSON.stringify(docs))
-    })
   })
 
   app.get('/imagesearch/:search', (req, res, next) => {
